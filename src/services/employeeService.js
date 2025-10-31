@@ -3,6 +3,7 @@
  * Handles all CRUD operations for employee data using localStorage
  */
 
+import { nanoid } from 'nanoid';
 const STORAGE_KEY = "employee_directory_data";
 
 /** * Gets the list of employees from localStorage
@@ -20,6 +21,7 @@ export const getEmployees = () => {
  */
 export const saveEmployee = (employee) => {
   const employees = getEmployees();
-  employees.push(employee);
+  const uniqueId = nanoid(); // generating unique_id for each employee
+  employees.push({ ...employee, id: uniqueId });
   localStorage.setItem(STORAGE_KEY, JSON.stringify(employees));
 };
