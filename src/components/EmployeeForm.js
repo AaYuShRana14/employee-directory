@@ -1,6 +1,11 @@
 import { useState } from "react";
 import { saveEmployee } from "../services/EmployeeService";
 
+/**
+ * Employee Form Component
+ * Allows adding a new employee to the directory
+ * @param {Function} onEmployeeAdded - Callback function to notify parent component after adding an employee
+ */
 const EmployeeForm = ({ onEmployeeAdded }) => {
     // State to manage form inputs for new employee - name, role, department
     const [formData, setFormData] = useState({
@@ -61,8 +66,8 @@ const EmployeeForm = ({ onEmployeeAdded }) => {
     };
 
     return (
-        <div className="mb-6">
-            <h2 className="text-lg font-semibold mb-3">Add New Employee</h2>
+        <div className="mb-6 mx-auto">
+            <h2 className="text-lg font-semibold mb-3 text-center">Add New Employee</h2>
             {/* Form to add new employee */}
             <form onSubmit={submitHandler}>
                 <div className="flex flex-wrap gap-2">

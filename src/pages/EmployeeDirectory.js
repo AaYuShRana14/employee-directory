@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { getEmployees } from "../services/EmployeeService";
 import EmployeeForm from "../components/EmployeeForm";
+import EmployeeList from "../components/EmployeeList";
 
 const EmployeeDirectory = () => {
     // state to keep track of all employees
@@ -28,32 +29,11 @@ const EmployeeDirectory = () => {
     
     return (
         <div className="container mx-auto p-4 flex flex-col">
-            <h1 className="text-2xl font-bold mb-4">Employee Directory</h1>
-            
+            <h1 className="text-2xl font-bold mb-4 mx-auto">Employee Directory</h1>
             {/* Employee Form Component */}
             <EmployeeForm onEmployeeAdded={handleEmployeeAdded} />
-            
-            {/* Table showing all employees */}
-            <div className="mt-6 overflow-x-auto">
-                <table className="min-w-full bg-white">
-                    <thead>
-                        <tr>
-                            <th className="py-2">Name</th>
-                            <th className="py-2">Role</th>
-                            <th className="py-2">Department</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {employees.map((employee) => (
-                            <tr key={employee.id}>
-                                <td className="border-t py-2">{employee.name}</td>
-                                <td className="border-t py-2">{employee.role}</td>
-                                <td className="border-t py-2">{employee.department}</td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            </div>
+            {/* Employee List Component */}
+            <EmployeeList employees={employees} />
         </div>
     );
 };
