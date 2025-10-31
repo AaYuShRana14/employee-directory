@@ -25,3 +25,13 @@ export const saveEmployee = (employee) => {
   employees.push({ ...employee, id: uniqueId });
   localStorage.setItem(STORAGE_KEY, JSON.stringify(employees));
 };
+
+/**
+ * Deletes an employee from localStorage by their ID
+ * @param {string} employeeId - The unique ID of the employee to delete
+ */
+export const deleteEmployee = (employeeId) => {
+  let employees = getEmployees();
+  employees = employees.filter(emp => emp.id !== employeeId);
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(employees));
+};
