@@ -85,7 +85,7 @@ const EmployeeForm = ({ onEmployeeAdded, employee = {}, onClose }) => {
     };
 
     return (
-        <div className="mb-6 p-4 border border-gray-300 rounded-lg shadow-sm bg-white">
+        <div className="mb-6 p-4 border border-gray-300 rounded-lg shadow-sm">
             <h2 className="text-lg font-semibold mb-3 text-center">{employee.id ? "Edit Employee" : "Add New Employee"}</h2>
             {/* Form to add new employee or edit existing employee */}
             <form onSubmit={submitHandler}>

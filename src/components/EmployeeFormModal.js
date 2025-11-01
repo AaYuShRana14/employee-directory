@@ -7,7 +7,7 @@ import EmployeeForm from "./EmployeeForm";
  * @param {Function} onClose - Function to close the modal
  * @param {Function} onSave - Function to save the edited employee
  */
-const EmployeeFormModal = ({ employee, isOpen, onClose, onSave }) => {
+const EmployeeFormModal = ({ employee={}, isOpen, onClose, onSave }) => {
 
     /**
      * Handles the employee added event from EmployeeForm
@@ -21,16 +21,16 @@ const EmployeeFormModal = ({ employee, isOpen, onClose, onSave }) => {
 
     return (
         <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex items-center justify-center z-50">
-            <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full mx-4 max-h-[90vh] overflow-y-auto">
+            <div className="rounded-lg shadow-xl max-w-2xl w-full mx-4 max-h-[90vh] overflow-y-auto" style={{ backgroundColor: '#8da9c4' }}>
                 {/* Modal Header */}
-                <div className="px-6 py-4 border-b border-gray-200 flex items-center justify-between">
-                    <h3 className="text-lg font-medium text-gray-900">Edit Employee</h3>
-                    <button onClick={onClose} className="text-gray-400 hover:text-gray-600 text-xl font-bold">
+                <div className="px-6 py-4 border-b border-gray-400 flex items-center justify-between">
+                    <h3 className="text-lg font-medium text-white">Edit Employee</h3>
+                    <button onClick={onClose} className="text-white hover:text-gray-200 text-xl font-bold">
                         X
                     </button>
                 </div>
 
-                <div className="p-2">
+                <div className="p-6">
                     <EmployeeForm
                         employee={employee}
                         onEmployeeAdded={handleEmployeeAdded}

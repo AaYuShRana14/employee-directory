@@ -9,7 +9,7 @@ import EmployeeFormModal from "./EmployeeFormModal";
  * @param {Function} onEmployeeUpdated - Callback function called after employee is updated
  * @param {boolean} isEven - Whether this is an even-numbered row for alternating colors
  */
-const EmployeeCard = ({ employee, onEmployeeDeleted,onEmployeeUpdated }) => {
+const EmployeeCard = ({ employee, onEmployeeDeleted,onSave }) => {
     const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
     /**
@@ -41,28 +41,28 @@ const EmployeeCard = ({ employee, onEmployeeDeleted,onEmployeeUpdated }) => {
     };
 
   return (
-    <tr className={`hover:bg-blue-50 transition-colors border-b`}>
+    <tr className="hover:bg-opacity-80 transition-colors border-b border-gray-400" style={{ backgroundColor: '#8da9c4' }}>
       <td className="px-6 py-4 whitespace-nowrap">
-        <div className="text-sm font-medium text-gray-900">
+        <div className="text-sm font-medium text-white">
           {employee.name}
         </div>
       </td>
       <td className="px-6 py-4 whitespace-nowrap">
-        <div className="text-sm text-gray-600">
+        <div className="text-sm text-white">
           {employee.role}
         </div>
       </td>
       <td className="px-6 py-4 whitespace-nowrap">
-        <div className="text-sm text-gray-600">
+        <div className="text-sm text-white">
           {employee.department}
         </div>
       </td>
       <td className="px-6 py-4 whitespace-nowrap text-center">
         <div className="flex justify-center gap-2">
-          <button className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded text-sm transition-colors" onClick={handleEdit}>
+          <button className="bg-[#13315c] hover:bg-blue-600 text-white px-3 py-1 rounded text-sm transition-colors" onClick={handleEdit}>
             Edit
           </button>
-          <button className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded text-sm transition-colors" onClick={deleteHandler}>
+          <button className="bg-[#134074] text-white px-3 py-1 rounded text-sm transition-colors" onClick={deleteHandler}>
             Delete
           </button>
         </div>
@@ -73,7 +73,7 @@ const EmployeeCard = ({ employee, onEmployeeDeleted,onEmployeeUpdated }) => {
         employee={employee}
         isOpen={isEditModalOpen}
         onClose={handleCloseModal}
-        onSave={onEmployeeUpdated}
+        onSave={onSave}
       />
     </tr>
   );
