@@ -35,3 +35,15 @@ export const deleteEmployee = (employeeId) => {
   employees = employees.filter(emp => emp.id !== employeeId);
   localStorage.setItem(STORAGE_KEY, JSON.stringify(employees));
 };
+
+
+/** * Updates an existing employee's details in localStorage
+ * @param {Object} updatedEmployee - Employee object containing updated details including id
+ */
+export const updateEmployee = (updatedEmployee) => {
+  let employees = getEmployees();
+  employees = employees.map(emp => 
+    emp.id === updatedEmployee.id ? updatedEmployee : emp
+  );
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(employees));
+};

@@ -1,10 +1,21 @@
+import { useState } from "react";
 import { deleteEmployee } from "../services/EmployeeService";
+import EmployeeFormModal from "./EmployeeFormModal";
+
 /**
- * Displays a single employee in a card layout
+ * Displays a single employee as a table row
  * @param {Object} employee - The employee object containing name, role, and department
  * @param {Function} onEmployeeDeleted - Callback function called after employee is deleted
+ * @param {Function} onEmployeeUpdated - Callback function called after employee is updated
+ * @param {boolean} isEven - Whether this is an even-numbered row for alternating colors
  */
-const EmployeeCard = ({ employee, onEmployeeDeleted }) => {
+const EmployeeCard = ({ employee, onEmployeeDeleted,onEmployeeUpdated }) => {
+    const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+
+    /**
+     * function to handle deleting an employee
+     * @returns {void}
+     */
     const deleteHandler = () => {
         deleteEmployee(employee.id);
         // Notify parent component that employee was deleted
@@ -12,22 +23,59 @@ const EmployeeCard = ({ employee, onEmployeeDeleted }) => {
             onEmployeeDeleted();
         }
     };
+
+    /**
+     * function to handle opening the edit modal
+     * @returns {void}
+     */
+    const handleEdit = () => {
+        setIsEditModalOpen(true);
+    };
+
+    /**
+     * function to handle closing the edit modal
+     * @returns {void}
+     */
+    const handleCloseModal = () => {
+        setIsEditModalOpen(false);
+    };
+
   return (
-    <div className="bg-white p-4 rounded-lg shadow hover:shadow-md transition-shadow border border-gray-100">
-      <h3 className="text-lg font-semibold text-gray-800 mb-1">
-        {employee.name}
-      </h3>
-      <p className="text-gray-600 text-sm mb-1">
-        <span className="font-medium">Role:</span> {employee.role}
-      </p>
-      <p className="text-gray-600 text-sm">
-        <span className="font-medium">Department:</span> {employee.department}
-      </p>
-      <div className="mt-3 flex gap-2">
-        <button className="bg-blue-500 text-white px-3 py-1 rounded text-sm">Edit</button>
-        <button className="bg-red-500 text-white px-3 py-1 rounded text-sm" onClick={deleteHandler}>Delete</button>
-      </div>
-    </div>
+    <tr className={`hover:bg-blue-50 transition-colors border-b`}>
+      <td className="px-6 py-4 whitespace-nowrap">
+        <div className="text-sm font-medium text-gray-900">
+          {employee.name}
+        </div>
+      </td>
+      <td className="px-6 py-4 whitespace-nowrap">
+        <div className="text-sm text-gray-600">
+          {employee.role}
+        </div>
+      </td>
+      <td className="px-6 py-4 whitespace-nowrap">
+        <div className="text-sm text-gray-600">
+          {employee.department}
+        </div>
+      </td>
+      <td className="px-6 py-4 whitespace-nowrap text-center">
+        <div className="flex justify-center gap-2">
+          <button className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded text-sm transition-colors" onClick={handleEdit}>
+            Edit
+          </button>
+          <button className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded text-sm transition-colors" onClick={deleteHandler}>
+            Delete
+          </button>
+        </div>
+      </td>
+
+      {/* Modal to edit employee details */}
+      <EmployeeFormModal
+        employee={employee}
+        isOpen={isEditModalOpen}
+        onClose={handleCloseModal}
+        onSave={onEmployeeUpdated}
+      />
+    </tr>
   );
 };
 

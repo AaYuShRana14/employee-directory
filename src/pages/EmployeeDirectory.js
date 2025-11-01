@@ -33,7 +33,7 @@ const EmployeeDirectory = () => {
             {/* Employee Form Component */}
             <EmployeeForm onEmployeeAdded={handleRefresh} />
             {/* Employee List Component */}
-            <EmployeeList employees={employees} onEmployeeDeleted={handleRefresh} />
+            <EmployeeList employees={employees} onEmployeeDeleted={handleRefresh} onEmployeeUpdated={handleRefresh} />
         </div>
     );
 };
