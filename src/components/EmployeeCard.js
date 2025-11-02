@@ -6,10 +6,9 @@ import EmployeeFormModal from "./EmployeeFormModal";
  * Displays a single employee as a table row
  * @param {Object} employee - The employee object containing name, role, and department
  * @param {Function} onEmployeeDeleted - Callback function called after employee is deleted
- * @param {Function} onEmployeeUpdated - Callback function called after employee is updated
- * @param {boolean} isEven - Whether this is an even-numbered row for alternating colors
+ * @param {Function} onSave - Callback function called after employee is saved or edited
  */
-const EmployeeCard = ({ employee, onEmployeeDeleted,onSave }) => {
+const EmployeeCard = ({ employee, onEmployeeDeleted, onSave }) => {
     const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
     /**
@@ -59,10 +58,10 @@ const EmployeeCard = ({ employee, onEmployeeDeleted,onSave }) => {
       </td>
       <td className="px-6 py-4 whitespace-nowrap text-center">
         <div className="flex justify-center gap-2">
-          <button className="bg-[#13315c] hover:bg-blue-600 text-white px-3 py-1 rounded text-sm transition-colors" onClick={handleEdit}>
+          <button className="bg-[#13315c] hover:bg-[#1b263b] text-white px-3 py-1 rounded text-sm transition-colors" onClick={handleEdit}>
             Edit
           </button>
-          <button className="bg-[#134074] text-white px-3 py-1 rounded text-sm transition-colors" onClick={deleteHandler}>
+          <button className="bg-[#134074] hover:bg-[#1b263b] text-white px-3 py-1 rounded text-sm transition-colors" onClick={deleteHandler}>
             Delete
           </button>
         </div>

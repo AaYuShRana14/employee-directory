@@ -3,7 +3,7 @@ import { saveEmployee,updateEmployee } from "../services/EmployeeService";
 
 /**
  * Employee Form Component
- * Allows adding a new employee to the directory
+ * Allows adding a new employee to the directory or editing an existing employee
  * @param {Function} onEmployeeAdded - Callback function to notify parent component after adding an employee
  */
 const EmployeeForm = ({ onEmployeeAdded, employee = {}, onClose }) => {
@@ -66,7 +66,7 @@ const EmployeeForm = ({ onEmployeeAdded, employee = {}, onClose }) => {
             }
         }
         else{
-            if (!validateForm()) return;
+            if (!validateForm()) return; // Stop submission if form is invalid
             // Editing existing employee
             const updatedEmployee = {
                 id: employee.id,
@@ -76,9 +76,7 @@ const EmployeeForm = ({ onEmployeeAdded, employee = {}, onClose }) => {
             };
             // Save updated employee to localStorage
             updateEmployee(updatedEmployee);
-            if (onEmployeeAdded) {
-                onEmployeeAdded();
-            }
+            onEmployeeAdded();
             // Close the modal after updating
             onClose();
         }
@@ -86,36 +84,36 @@ const EmployeeForm = ({ onEmployeeAdded, employee = {}, onClose }) => {
 
     return (
         <div className="mb-6 p-4 border border-gray-300 rounded-lg shadow-sm">
-            <h2 className="text-lg font-semibold mb-3 text-center">{employee.id ? "Edit Employee" : "Add New Employee"}</h2>
+            <h2 className="text-lg font-semibold mb-3 text-center text-[#1b263b]">{employee.id ? "Edit Employee" : "Add New Employee"}</h2>
             {/* Form to add new employee or edit existing employee */}
             <form onSubmit={submitHandler}>
                 <div className="flex flex-col flex-wrap gap-1.5">
                     <div className="flex flex-col">
-                        <label htmlFor="name" className="min-w-[80px]">Name:</label>
-                        <input type="text" placeholder="Name" value={formData.name} onChange={handleChange} name="name" className={"border p-2 mr-2 " + (errors.name && 'border-red-500')}/>
+                        <label htmlFor="name" className="min-w-[80px] text-[#e0e1dd]">Name:</label>
+                        <input type="text" placeholder="Name" value={formData.name} onChange={handleChange} name="name" className={"border p-2 mr-2 " + (errors.name && 'border-[#1b263b]')}/>
                         <div className="h-5">
-                            {errors.name && (<span className="text-red-500 text-sm">{errors.name}</span>)}
+                            {errors.name && (<span className="text-[13px] font-medium" style={{ color: "#1b263b" }}>{errors.name}</span>)}
                         </div>
                     </div>
                     <div className="flex flex-col">
-                        <label htmlFor="role" className="min-w-[80px]">Role:</label>
-                        <input type="text" placeholder="Role" value={formData.role} onChange={handleChange} name="role" className={"border p-2 mr-2 " + (errors.role && 'border-red-500')}/>
+                        <label htmlFor="role" className="min-w-[80px] text-[#e0e1dd]">Role:</label>
+                        <input type="text" placeholder="Role" value={formData.role} onChange={handleChange} name="role" className={"border p-2 mr-2 " + (errors.role && 'border-[#1b263b]')}/>
                         <div className="h-5">
-                            {errors.role && (<span className="text-red-500 text-sm">{errors.role}</span>)}
+                            {errors.role && (<span className="text-[13px] font-medium" style={{ color: "#1b263b" }}>{errors.role}</span>)}
                         </div>
                     </div>
                     <div className="flex flex-col">
-                        <label htmlFor="department" className="min-w-[80px]">Department:</label>
-                        <input type="text" placeholder="Department" value={formData.department} onChange={handleChange} name="department" className={"border p-2 mr-2 " + (errors.department && 'border-red-500')}/>
+                        <label htmlFor="department" className="min-w-[80px] text-[#e0e1dd]">Department:</label>
+                        <input type="text" placeholder="Department" value={formData.department} onChange={handleChange} name="department" className={"border p-2 mr-2 " + (errors.department && 'border-[#1b263b]')}/>
                         <div className="h-5">
-                            {errors.department && (<span className="text-red-500 text-sm">{errors.department}</span>)}
+                            {errors.department && (<span className="text-[13px] font-medium" style={{ color: "#1b263b" }}>{errors.department}</span>)}
                         </div>
                     </div>
                     <button 
                         type="submit" 
-                        className="bg-blue-500 hover:bg-blue-600 text-white p-2 max-h-10 rounded transition-colors max-w-xs self-center"
+                        className="bg-[#13315c] hover:bg-blue-600 text-white p-2 max-h-10 rounded transition-colors max-w-xs self-center"
                     >
-                        {employee.id ? "Update Employee" : "Add Employee"}
+                        {employee.id ? "Update Employee" : "Save Employee"}
                     </button>
                 </div>
             </form>
