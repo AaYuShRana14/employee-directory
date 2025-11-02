@@ -111,7 +111,7 @@ const EmployeeForm = ({ onEmployeeAdded, employee = {}, onClose }) => {
                     </div>
                     <button 
                         type="submit" 
-                        className="bg-[#13315c] hover:bg-blue-600 text-white p-2 max-h-10 rounded transition-colors max-w-xs self-center"
+                        className="bg-[#13315c] hover:bg-[#1b263b] text-white p-2 max-h-10 rounded transition-colors max-w-xs self-center"
                     >
                         {employee.id ? "Update Employee" : "Save Employee"}
                     </button>
